@@ -1,40 +1,59 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CMS\ArsipController;
+use App\Http\Controllers\CMS\CategoryController;
+use App\Http\Controllers\CMS\LogController;
+use App\Http\Controllers\CMS\PermissionController;
+use App\Http\Controllers\CMS\RoleController;
+use App\Http\Controllers\CMS\UserController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('cms.pages.auth.login');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::get('/register', function () {
-    return view('cms.pages.auth.register');
-});
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/dashboard', function () {
-    return view('cms.pages.dashboard');
-});
+    Route::group(['prefix' => 'cms'], function () {
 
-Route::get('/users', function () {
-    return view('cms.pages.users.index');
-});
+        Route::group(['prefix' => 'pages'], function () {
 
-Route::get('/arsips', function () {
-    return view('cms.pages.arsips.index');
-});
+            Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/roles', function () {
-    return view('cms.pages.roles.index');
-});
+            Route::group(['prefix' => 'users'], function () {
+                Route::get('/', [UserController::class, 'index'])->name('users.index');
+            });
 
-Route::get('/permissions', function () {
-    return view('cms.pages.permissions.index');
-});
+            Route::group(['prefix' => 'arsips'], function () {
+                Route::get('/', [ArsipController::class, 'index'])->name('arsips.index');
+            });
 
-Route::get('/logs', function () {
-    return view('cms.pages.logs.index');
-});
+            Route::group(['prefix' => 'logs'], function () {
+                Route::get('/', [LogController::class, 'index'])->name('logs.index');
+            });
 
+            Route::group(['prefix' => 'roles'], function () {
+                Route::get('/', [RoleController::class, 'index'])->name('roles.index');
+            });
+
+            Route::group(['prefix' => 'permissions'], function () {
+                Route::get('/', [PermissionController::class, 'index'])->name('permissions.index');
+            });
+
+            Route::group(['prefix' => 'categories'], function () {
+                Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+            });
+
+        });
+    });
+});

@@ -83,48 +83,48 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
-                    <li class="menu-item active">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item @if(request()->is('cms/pages/dashboard')) active @endif">
+                        <a href="{{ route('dashboard') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
 
                     <!-- Arsip -->
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item @if(request()->is('cms/pages/arsips*')) active @endif">
+                        <a href="{{ route('arsips.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-archive"></i>
                             <div data-i18n="eCommerce">Arsip</div>
                         </a>
                     </li>
 
                     <!-- Logs -->
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item @if(request()->is('cms/pages/logs*')) active @endif">
+                        <a href="{{ route('logs.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-list-check"></i>
                             <div data-i18n="Maps">Logs</div>
                         </a>
                     </li>
 
                     <!-- Permission -->
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item @if(request()->is('cms/pages/permissions*')) active @endif">
+                        <a href="{{ route('permissions.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                             <div data-i18n="Pages">Permission</div>
                         </a>
                     </li>
 
                     <!-- Role -->
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item @if(request()->is('cms/pages/roles*')) active @endif">
+                        <a href="{{ route('roles.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-group"></i>
                             <div data-i18n="Authentication">Role</div>
                         </a>
                     </li>
 
                     <!-- User -->
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item @if(request()->is('cms/pages/users*')) active @endif">
+                        <a href="{{ route('users.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-user"></i>
                             <div data-i18n="Miscellaneous">User</div>
                         </a>
@@ -248,7 +248,7 @@
                                     document.write(new Date().getFullYear());
                                 </script>
                                 , made with ❤️ by
-                                <a href="https://www.instagram.com/wildanbelfiore/" target="_blank" class="footer-link fw-bolder">Wildan Belfiore</a>
+                                <a href="https://www.instagram.com/wildanbelfiore/" target="_blank" class="footer-link fw-bolder">Indah</a>
                             </div>
                         </div>
                     </footer>
