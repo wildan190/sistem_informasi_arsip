@@ -106,6 +106,14 @@
                         </a>
                     </li>
 
+                    <!-- Category -->
+                    <li class="menu-item @if(request()->is('cms/pages/categories*')) active @endif">
+                        <a href="{{ route('categories.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-category"></i>
+                            <div data-i18n="Basic">Category</div>
+                        </a>
+                    </li>
+
                     <!-- Permission -->
                     <li class="menu-item @if(request()->is('cms/pages/permissions*')) active @endif">
                         <a href="{{ route('permissions.index') }}" class="menu-link">

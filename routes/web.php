@@ -36,6 +36,13 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::group(['prefix' => 'arsips'], function () {
                 Route::get('/', [ArsipController::class, 'index'])->name('arsips.index');
+                Route::get('/create', [ArsipController::class, 'create'])->name('arsips.create');
+                Route::post('/create/store', [ArsipController::class, 'store'])->name('arsips.store');
+                Route::get('/edit/{arsip}', [ArsipController::class, 'edit'])->name('arsips.edit');
+                Route::post('/{arsip}', [ArsipController::class, 'update'])->name('arsips.update');
+                Route::get('/{arsip}', [ArsipController::class, 'show'])->name('arsips.show');
+                Route::get('/{arsip}/download', [ArsipController::class, 'download'])->name('arsips.download');
+                Route::delete('/{arsip}', [ArsipController::class, 'destroy'])->name('arsips.destroy');
             });
 
             Route::group(['prefix' => 'logs'], function () {
@@ -52,6 +59,11 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::group(['prefix' => 'categories'], function () {
                 Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+                Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+                Route::post('/create/store', [CategoryController::class, 'store'])->name('categories.store');
+                Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
+                Route::post('/{category}', [CategoryController::class, 'update'])->name('categories.update');
+                Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
             });
 
         });

@@ -10,7 +10,7 @@
             <!-- Card component for form -->
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Add New Category</h4>
+                    <h4 class="card-title">Edit Category</h4>
                 </div>
                 <div class="card-body">
                     <!-- Error messages -->
@@ -25,20 +25,21 @@
                     @endif
                     
                     <!-- Form start -->
-                    <form action="{{ route('categories.store') }}" method="post">
+                    <form action="{{ route('categories.update', $category->id) }}" method="post">
                         @csrf
+                        @method('PUT')
                         <!-- Form Group for Name -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" name="name" id="name" class="form-control" required>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ $category->name }}" required>
                         </div>
                         <!-- Form Group for Description -->
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <input type="text" name="description" id="description" class="form-control">
+                            <input type="text" name="description" id="description" class="form-control" value="{{ $category->description }}">
                         </div>
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
             </div>

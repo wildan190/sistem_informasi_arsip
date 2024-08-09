@@ -72,7 +72,7 @@ class AuthController extends Controller
         ]);
 
         // Setelah register, arahkan ke halaman login atau login otomatis
-        return redirect()->route('auth.loginForm')->with('success', 'Registration successful, please log in.');
+        return redirect()->route('login')->with('success', 'Registration successful, please log in.');
     }
 
     // Logout
