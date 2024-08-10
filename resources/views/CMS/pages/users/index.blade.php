@@ -48,9 +48,11 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->roles ? $user->roles->pluck('name')->join(', ') : '' }}</td>
                                 <td>
-                                    <span class="badge {{ $user->email_verified_at ? 'badge-success' : 'badge-danger' }}">
-                                        {{ $user->email_verified_at ? 'Verified' : 'Unverified' }}
-                                    </span>
+                                    @if ($user->email_verified_at)
+                                    <span class="text-success">{{ __('Verified') }}</span>
+                                    @else
+                                    <span class="text-danger">{{ __('Unverified') }}</span>
+                                    @endif
                                 </td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->updated_at }}</td>
