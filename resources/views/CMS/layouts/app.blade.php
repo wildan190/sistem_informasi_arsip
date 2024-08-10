@@ -106,6 +106,7 @@
                         </a>
                     </li>
 
+                    @if (auth()->user()->hasRole('Admin'))
                     <!-- Category -->
                     <li class="menu-item @if(request()->is('cms/pages/categories*')) active @endif">
                         <a href="{{ route('categories.index') }}" class="menu-link">
@@ -129,6 +130,7 @@
                             <div data-i18n="Authentication">Role</div>
                         </a>
                     </li>
+                    @endif
 
                     <!-- User -->
                     <li class="menu-item @if(request()->is('cms/pages/users*')) active @endif">

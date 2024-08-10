@@ -12,7 +12,9 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">Categories</h4>
                     <!-- Create button -->
+                    @if (auth()->user()->hasRole('Admin'))
                     <a href="{{ route('categories.create') }}" class="btn btn-success">Create New Category</a>
+                    @endif
                 </div>
                 <div class="card-body">
                     <!-- Table component -->
@@ -27,21 +29,21 @@
                         </thead>
                         <tbody>
                             @foreach ($categories as $category)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $category->name }}</td>
-                                    <td>{{ $category->description }}</td>
-                                    <td>
-                                        <!-- Edit link -->
-                                        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                        <!-- Delete form -->
-                                        <form action="{{ route('categories.destroy', $category->id) }}" method="post" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $category->name }}</td>
+                                <td>{{ $category->description }}</td>
+                                <td>
+                                    <!-- Edit link -->
+                                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <!-- Delete form -->
+                                    <form action="{{ route('categories.destroy', $category->id) }}" method="post" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

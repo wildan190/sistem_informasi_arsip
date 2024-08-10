@@ -55,9 +55,11 @@
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->updated_at }}</td>
                                 <td>
+                                    @if (auth()->user()->hasPermissionTo('Assign'))
                                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

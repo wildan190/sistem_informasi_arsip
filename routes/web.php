@@ -33,26 +33,26 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::group(['prefix' => 'users'], function () {
                 Route::get('/', [UserController::class, 'index'])->name('users.index');
-                Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+                Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit')->middleware('permission:Assign');
                 Route::put('/{id}', [UserController::class, 'update'])->name('users.update');
             });
 
             Route::group(['prefix' => 'arsips'], function () {
                 Route::get('/', [ArsipController::class, 'index'])->name('arsips.index');
-                Route::get('/create', [ArsipController::class, 'create'])->name('arsips.create');
+                Route::get('/create', [ArsipController::class, 'create'])->name('arsips.create')->middleware('permission:Create');
                 Route::post('/create/store', [ArsipController::class, 'store'])->name('arsips.store');
-                Route::get('/edit/{arsip}', [ArsipController::class, 'edit'])->name('arsips.edit');
+                Route::get('/edit/{arsip}', [ArsipController::class, 'edit'])->name('arsips.edit')->middleware('permission:Edit');
                 Route::post('/{arsip}', [ArsipController::class, 'update'])->name('arsips.update');
                 Route::get('/{arsip}', [ArsipController::class, 'show'])->name('arsips.show');
                 Route::get('/{arsip}/download', [ArsipController::class, 'download'])->name('arsips.download');
-                Route::delete('/{arsip}', [ArsipController::class, 'destroy'])->name('arsips.destroy');
+                Route::delete('/{arsip}', [ArsipController::class, 'destroy'])->name('arsips.destroy')->middleware('permission:Delete');
             });
 
             Route::group(['prefix' => 'logs'], function () {
                 Route::get('/', [LogController::class, 'index'])->name('logs.index');
             });
 
-            Route::group(['prefix' => 'roles'], function () {
+            Route::group(['prefix' => 'roles', 'middleware' => 'role:Admin'], function () {
                 Route::get('/', [RoleController::class, 'index'])->name('roles.index');
                 Route::get('/create', [RoleController::class, 'create'])->name('roles.create');
                 Route::post('/create/store', [RoleController::class, 'store'])->name('roles.store');
@@ -61,14 +61,14 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::delete('/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
             });
 
-            Route::group(['prefix' => 'permissions'], function () {
+            Route::group(['prefix' => 'permissions', 'middleware' => 'role:Admin'], function () {
                 Route::get('/', [PermissionController::class, 'index'])->name('permissions.index');
                 Route::get('/create', [PermissionController::class, 'create'])->name('permissions.create');
                 Route::post('/create/store', [PermissionController::class, 'store'])->name('permissions.store');
                 Route::get('/edit/{permission}', [PermissionController::class, 'edit'])->name('permissions.edit');
             });
 
-            Route::group(['prefix' => 'categories'], function () {
+            Route::group(['prefix' => 'categories', 'middleware' => 'role:Admin'], function () {
                 Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
                 Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
                 Route::post('/create/store', [CategoryController::class, 'store'])->name('categories.store');
