@@ -19,10 +19,11 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::group(['prefix' => 'cms'], function () {
 
@@ -32,6 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::group(['prefix' => 'users'], function () {
                 Route::get('/', [UserController::class, 'index'])->name('users.index');
+                Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+                Route::put('/{id}', [UserController::class, 'update'])->name('users.update');
             });
 
             Route::group(['prefix' => 'arsips'], function () {
@@ -51,10 +54,18 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::group(['prefix' => 'roles'], function () {
                 Route::get('/', [RoleController::class, 'index'])->name('roles.index');
+                Route::get('/create', [RoleController::class, 'create'])->name('roles.create');
+                Route::post('/create/store', [RoleController::class, 'store'])->name('roles.store');
+                Route::put('/{role}', [RoleController::class, 'update'])->name('roles.update');
+                Route::get('/{role}', [RoleController::class, 'edit'])->name('roles.edit');
+                Route::delete('/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
             });
 
             Route::group(['prefix' => 'permissions'], function () {
                 Route::get('/', [PermissionController::class, 'index'])->name('permissions.index');
+                Route::get('/create', [PermissionController::class, 'create'])->name('permissions.create');
+                Route::post('/create/store', [PermissionController::class, 'store'])->name('permissions.store');
+                Route::get('/edit/{permission}', [PermissionController::class, 'edit'])->name('permissions.edit');
             });
 
             Route::group(['prefix' => 'categories'], function () {

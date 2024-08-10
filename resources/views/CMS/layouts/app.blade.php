@@ -137,6 +137,19 @@
                             <div data-i18n="Miscellaneous">User</div>
                         </a>
                     </li>
+
+                </ul>
+
+                <ul>
+                    <li class="menu-item">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-icon btn-bg-danger btn-active-light-danger">
+                                <i data-feather="log-out" class="align-middle me-25 sneat-icon"></i>
+                                <span class="align-middle" data-i18n="Logout">Logout</span>
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </aside>
             <!-- / Menu -->
