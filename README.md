@@ -8,7 +8,7 @@
 
 3. Menjalankan perintah `php artisan key:generate` untuk menggenerate key baru
 
-4. Mengimpor data dari file `sistem_informasi_arsip.sql` ke dalam php myadmin dengan cara memilih menu import dan pilih file `sistem_informasi_arsip.sql`
+4. Mengimpor data dari file `sistem_informasi_arsip.sql` yang berada dalam direktori `database/sql/` ke dalam php myadmin dengan cara memilih menu import dan pilih file `sistem_informasi_arsip.sql`
 
 ![alt text](image.png)
 
