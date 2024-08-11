@@ -13,3 +13,7 @@
 ![alt text](image.png)
 
 5. Menjalankan program dengan perintah `php artisan serve`
+
+6. Login sebagai admin dengan menggunakan akun berikut :
+    Email : `admin@dev.com`
+    Password : `password`
