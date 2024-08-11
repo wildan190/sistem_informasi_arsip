@@ -2,7 +2,9 @@
 
 1. Menginstal dependency dengan cara menjalankan perintah di terminal `composer update`
 
-2. Membuka file `.env` dan mengubah isi-isi yang diperlukan (jika ada)
+2. Mengubah terlebih dahulu file `.env.example` menjadi `.env` dan mengubah koneksi databasenya sesuai dengan server yang digunakan
+
+![alt text](image-1.png)
 
 3. Menjalankan perintah `php artisan key:generate` untuk menggenerate key baru
 
